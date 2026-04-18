@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeScope — India Market Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Background -->
+<div class="bg-grid" aria-hidden="true"></div>
+
+<!-- ── Header ─────────────────────────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Trade<span>Scope</span></a>
+    <div class="header-right">
+      <div class="user-pill">
+        <span class="user-dot"></span>
+        <span id="header-username">Loading…</span>
+      </div>
+      <button class="btn btn-ghost" id="logout-btn">Logout</button>
+    </div>
+  </div>
+</header>
+
+<!-- ── Main ───────────────────────────────────────────────────────────────── -->
+<main>
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        🇮🇳 India Market Intelligence
+      </div>
+      <h1 class="hero-title">
+        Discover <em>Trade</em><br>Opportunities
+      </h1>
+      <p class="hero-lead">
+        AI-powered sector analysis backed by live market data.
+        Select a sector to generate an institutional-grade trade report.
+      </p>
+    </section>
+
+    <!-- Analyze Panel -->
+    <div class="analyze-panel">
+      <div class="panel-row">
+        <div class="form-group" style="margin:0">
+         <label class="form-label">Search Sector</label>
+
+<input 
+  type="text" 
+  id="sector-search" 
+  class="form-input" 
+  placeholder="Search or type new sector (e.g. cricket)" 
+/>
+
+<div id="search-results" class="sector-grid" style="margin-top:0.5rem"></div>
+        </div>
+        <button class="btn btn-primary" id="analyze-btn" style="margin-top:1.45rem" disabled>
+          <span id="btn-text">Analyze</span>
+          <span id="btn-spinner" class="spinner" style="display:none"></span>
+        </button>
+      </div>
+
+      <!-- Quick-select chips -->
+      <div style="margin-top:1.5rem">
+        <div class="form-label">Quick select</div>
+        <div class="sector-grid" id="sector-chips">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-value" id="stat-requests">0</div>
+          <div class="stat-label">Requests used</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">10</div>
+          <div class="stat-label">Per minute limit</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-last-sector">—</div>
+          <div class="stat-label">Last analyzed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-time">—</div>
+          <div class="stat-label">Response time</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Alert -->
+    <div id="error-alert" class="alert alert-error" style="display:none"></div>
+
+    <!-- Loading State -->
+    <div id="loading-state">
+      <div class="loading-pulse">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="loading-text">Generating trade intelligence report…</p>
+      <ul class="loading-steps" id="loading-steps">
+        <li id="step-1">Validating sector &amp; authenticating</li>
+        <li id="step-2">Fetching live market data</li>
+        <li id="step-3">Running AI sector analysis</li>
+        <li id="step-4">Formatting report</li>
+      </ul>
+    </div>
+
+    <!-- Report Output -->
+    <div id="report-output">
+      <div class="report-header">
+        <div style="display:flex;align-items:center;gap:0.75rem">
+          <span class="report-meta"><span class="tag" id="report-sector-tag">—</span></span>
+          <span class="report-meta" id="report-timestamp">—</span>
+        </div>
+        <div style="display:flex;gap:0.5rem">
+          <button class="btn btn-ghost" id="copy-btn" style="font-size:0.75rem;padding:0.45rem 1rem">
+            Copy Markdown
+          </button>
+          <button class="btn btn-ghost" id="new-btn" style="font-size:0.75rem;padding:0.45rem 1rem">
+            New Report
+          </button>
+        </div>
+      </div>
+
+      <div class="markdown-body" id="markdown-content"></div>
+
+      <div class="sources-card" id="sources-card" style="display:none">
+        <div class="sources-title">Data Sources</div>
+        <div class="sources-list" id="sources-list"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    TradeScope — India Market Intelligence &nbsp;·&nbsp;
+    Powered by Gemini AI &nbsp;·&nbsp;
+    Data: IBEF, Ministry of Commerce &nbsp;·&nbsp;
+    <a href="/docs" style="color:var(--fg-subtle);text-decoration:none">API Docs</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
